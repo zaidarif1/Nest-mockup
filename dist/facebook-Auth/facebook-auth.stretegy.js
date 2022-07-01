@@ -9,19 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GoogleStrategy = void 0;
+exports.FacebookStrategy = void 0;
 const passport_1 = require("@nestjs/passport");
 const dotenv_1 = require("dotenv");
 const common_1 = require("@nestjs/common");
-const passport_google_oauth2_1 = require("passport-google-oauth2");
+const passport_facebook_1 = require("passport-facebook");
 (0, dotenv_1.config)();
-let GoogleStrategy = class GoogleStrategy extends (0, passport_1.PassportStrategy)(passport_google_oauth2_1.Strategy, 'google') {
+let FacebookStrategy = class FacebookStrategy extends (0, passport_1.PassportStrategy)(passport_facebook_1.Strategy, 'facebook') {
     constructor() {
         super({
-            clientID: "954855165057-hh8lekff9h4m01o1jl1k41sic5dfnngl.apps.googleusercontent.com",
-            clientSecret: "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",
+            clientID: "444048330581658",
+            clientSecret: "19b89d2db7409577d710bba97e36a078",
             callbackURL: 'http://localhost:3000/google/redirect',
-            scope: ['email', 'profile'],
+            scope: "email",
+            profileFields: ['email', 'profile'],
         });
     }
     async validate(accessToken, refreshToken, profile, done) {
@@ -34,9 +35,9 @@ let GoogleStrategy = class GoogleStrategy extends (0, passport_1.PassportStrateg
         done(null, user);
     }
 };
-GoogleStrategy = __decorate([
+FacebookStrategy = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [])
-], GoogleStrategy);
-exports.GoogleStrategy = GoogleStrategy;
+], FacebookStrategy);
+exports.FacebookStrategy = FacebookStrategy;
 //# sourceMappingURL=facebook-auth.stretegy.js.map

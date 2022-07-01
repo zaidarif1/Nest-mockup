@@ -1,2 +1,2 @@
-export declare class GoogleOauthModule {
+export declare class FacebookAuthModule {
 }

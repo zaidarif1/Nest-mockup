@@ -20,6 +20,7 @@ const constants_1 = require("./auth/constants");
 const core_1 = require("@nestjs/core");
 const roles_guard_1 = require("./roles.guard");
 const google_oauth_module_1 = require("./google-oauth/google-oauth.module");
+const facebook_auth_module_1 = require("./facebook-Auth/facebook-auth.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -42,6 +43,7 @@ AppModule = __decorate([
                 signOptions: { expiresIn: '60s' },
             }),
             google_oauth_module_1.GoogleOauthModule,
+            facebook_auth_module_1.FacebookAuthModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

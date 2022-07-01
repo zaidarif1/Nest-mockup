@@ -11,6 +11,7 @@ import { jwtConstants } from './auth/constants';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './roles.guard';
 import { GoogleOauthModule } from './google-oauth/google-oauth.module';
+import { FacebookAuthModule } from './facebook-Auth/facebook-auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -31,6 +32,7 @@ import { GoogleOauthModule } from './google-oauth/google-oauth.module';
       signOptions: { expiresIn: '60s' },
     }),
     GoogleOauthModule,
+    FacebookAuthModule,
   ],
   controllers: [AppController],
   providers: [

@@ -6,19 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GoogleOauthModule = void 0;
+exports.FacebookAuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const facebook_auth_service_1 = require("./facebook-auth.service");
 const facebook_auth_controller_1 = require("./facebook-auth.controller");
 const facebook_auth_stretegy_1 = require("./facebook-auth.stretegy");
-let GoogleOauthModule = class GoogleOauthModule {
+let FacebookAuthModule = class FacebookAuthModule {
 };
-GoogleOauthModule = __decorate([
+FacebookAuthModule = __decorate([
     (0, common_1.Module)({
         imports: [],
-        providers: [facebook_auth_service_1.FacebookAuthService, facebook_auth_stretegy_1.GoogleStrategy],
+        providers: [facebook_auth_service_1.FacebookAuthService, facebook_auth_stretegy_1.FacebookStrategy],
         controllers: [facebook_auth_controller_1.FaceBookAuthController]
     })
-], GoogleOauthModule);
-exports.GoogleOauthModule = GoogleOauthModule;
+], FacebookAuthModule);
+exports.FacebookAuthModule = FacebookAuthModule;
 //# sourceMappingURL=facebook-auth.module.js.map

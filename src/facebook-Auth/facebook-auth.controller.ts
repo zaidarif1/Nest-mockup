@@ -1,5 +1,6 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { Request } from "express";
 import { FacebookAuthService } from './facebook-auth.service';
 
 @Controller('facebook')
@@ -7,12 +8,17 @@ export class FaceBookAuthController {
   constructor(private readonly facebookAuthService: FacebookAuthService) {}
 
   @Get()
-  @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req) {}
+  @UseGuards(AuthGuard('facebook'))
+  async facebookLogin(): Promise<any> {
+    return HttpStatus.OK;
+  }
 
   @Get('redirect')
   @UseGuards(AuthGuard('google'))
-  googleAuthRedirect(@Req() req) {
-    return this.facebookAuthService.googleLogin(req)
+  async facebookLoginRedirect(@Req() req: Request): Promise<any> {
+    return {
+      statusCode: HttpStatus.OK,
+      data: req,
+    };
   }
 }

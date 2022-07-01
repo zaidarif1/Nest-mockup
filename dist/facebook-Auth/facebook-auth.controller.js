@@ -20,27 +20,31 @@ let FaceBookAuthController = class FaceBookAuthController {
     constructor(facebookAuthService) {
         this.facebookAuthService = facebookAuthService;
     }
-    async googleAuth(req) { }
-    googleAuthRedirect(req) {
-        return this.facebookAuthService.googleLogin(req);
+    async facebookLogin() {
+        return common_1.HttpStatus.OK;
+    }
+    async facebookLoginRedirect(req) {
+        return {
+            statusCode: common_1.HttpStatus.OK,
+            data: req,
+        };
     }
 };
 __decorate([
     (0, common_1.Get)(),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('google')),
-    __param(0, (0, common_1.Req)()),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('facebook')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], FaceBookAuthController.prototype, "googleAuth", null);
+], FaceBookAuthController.prototype, "facebookLogin", null);
 __decorate([
     (0, common_1.Get)('redirect'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)('google')),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], FaceBookAuthController.prototype, "googleAuthRedirect", null);
+    __metadata("design:returntype", Promise)
+], FaceBookAuthController.prototype, "facebookLoginRedirect", null);
 FaceBookAuthController = __decorate([
     (0, common_1.Controller)('facebook'),
     __metadata("design:paramtypes", [facebook_auth_service_1.FacebookAuthService])

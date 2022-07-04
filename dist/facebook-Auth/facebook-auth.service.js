@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FacebookAuthService = void 0;
 const common_1 = require("@nestjs/common");
 let FacebookAuthService = class FacebookAuthService {
-    googleLogin(req) {
+    facebookLogin(req) {
         if (!req.user) {
             return 'No user from facebook';
         }

@@ -1,7 +1,7 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { config } from 'dotenv';
 import { Injectable } from '@nestjs/common';
-import { Strategy } from 'passport-facebook';
+import { Profile, Strategy } from 'passport-facebook';
 
 config();
 
@@ -12,21 +12,26 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
     super({
       clientID: "444048330581658",
       clientSecret: "19b89d2db7409577d710bba97e36a078",
-      callbackURL: 'http://localhost:3000/google/redirect',
+      callbackURL: 'http://localhost:3000/facebook/redirect',
       scope: "email",
-      profileFields: ['email', 'profile'],
+      profileFields: ['emails', 'name'],
     });
   }
 
-  async validate (accessToken: string, refreshToken: string, profile: any, done: any): Promise<any> {
+  async validate (accessToken: string, refreshToken: string, profile: Profile, done: any): Promise<any> {
     // console.log(request)
+    const { name, emails } = profile;
     const user = {
-      profile,
-      refreshToken,
-      done,
+      email: emails[0].value,
+      firstName: name.givenName,
+      lastName: name.familyName,
+    };
+    const payload = {
+      user,
       accessToken,
-    }
-    done(null, user);
+    };
+
+    done(null, payload);
   }
 }
 

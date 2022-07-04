@@ -21,13 +21,9 @@ let FaceBookAuthController = class FaceBookAuthController {
         this.facebookAuthService = facebookAuthService;
     }
     async facebookLogin() {
-        return common_1.HttpStatus.OK;
     }
     async facebookLoginRedirect(req) {
-        return {
-            statusCode: common_1.HttpStatus.OK,
-            data: req,
-        };
+        return req.user;
     }
 };
 __decorate([
@@ -39,7 +35,7 @@ __decorate([
 ], FaceBookAuthController.prototype, "facebookLogin", null);
 __decorate([
     (0, common_1.Get)('redirect'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('google')),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('facebook')),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

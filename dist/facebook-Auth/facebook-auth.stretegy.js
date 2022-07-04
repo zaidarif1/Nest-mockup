@@ -20,19 +20,23 @@ let FacebookStrategy = class FacebookStrategy extends (0, passport_1.PassportStr
         super({
             clientID: "444048330581658",
             clientSecret: "19b89d2db7409577d710bba97e36a078",
-            callbackURL: 'http://localhost:3000/google/redirect',
+            callbackURL: 'http://localhost:3000/facebook/redirect',
             scope: "email",
-            profileFields: ['email', 'profile'],
+            profileFields: ['emails', 'name'],
         });
     }
     async validate(accessToken, refreshToken, profile, done) {
+        const { name, emails } = profile;
         const user = {
-            profile,
-            refreshToken,
-            done,
+            email: emails[0].value,
+            firstName: name.givenName,
+            lastName: name.familyName,
+        };
+        const payload = {
+            user,
             accessToken,
         };
-        done(null, user);
+        done(null, payload);
     }
 };
 FacebookStrategy = __decorate([
